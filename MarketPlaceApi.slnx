@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MarketPlaceApi.Api/MarketPlaceApi.Api.csproj" />
+  <Project Path="MarketPlaceApi.Business/MarketPlaceApi.Business.csproj" />
+  <Project Path="MarketPlaceApi.Data/MarketPlaceApi.Data.csproj" />
+  <Project Path="MarketPlaceApi.Domain/MarketPlaceApi.Domain.csproj" />
+</Solution>
