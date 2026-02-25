@@ -1,0 +1,11 @@
+C:\MarketPlaceApi\MarketPlaceApi.Domain\bin\Debug\net10.0\MarketPlaceApi.Domain.deps.json
+C:\MarketPlaceApi\MarketPlaceApi.Domain\bin\Debug\net10.0\MarketPlaceApi.Domain.dll
+C:\MarketPlaceApi\MarketPlaceApi.Domain\bin\Debug\net10.0\MarketPlaceApi.Domain.pdb
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.AssemblyInfoInputs.cache
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.AssemblyInfo.cs
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.csproj.CoreCompileInputs.cache
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.dll
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\refint\MarketPlaceApi.Domain.dll
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.pdb
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\ref\MarketPlaceApi.Domain.dll

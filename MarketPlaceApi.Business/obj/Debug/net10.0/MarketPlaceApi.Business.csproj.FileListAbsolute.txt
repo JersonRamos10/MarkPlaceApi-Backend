@@ -1,0 +1,17 @@
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Business.deps.json
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Business.dll
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Business.pdb
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Data.dll
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Domain.dll
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Domain.pdb
+C:\MarketPlaceApi\MarketPlaceApi.Business\bin\Debug\net10.0\MarketPlaceApi.Data.pdb
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.csproj.AssemblyReference.cache
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.AssemblyInfoInputs.cache
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.AssemblyInfo.cs
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.csproj.CoreCompileInputs.cache
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPl.BB5EF289.Up2Date
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.dll
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\refint\MarketPlaceApi.Business.dll
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\MarketPlaceApi.Business.pdb
+C:\MarketPlaceApi\MarketPlaceApi.Business\obj\Debug\net10.0\ref\MarketPlaceApi.Business.dll
