@@ -9,7 +9,7 @@ using System.Text;
 using MarketPlaceApi.Data.Repositories.interfaces;
 using MarketPlaceApi.Data.Repositories;
 using MarketPlaceApi.Data.Repositories.Interfaces;
-// using Microsoft.OpenApi.Models; // se comentará y se usará nombre totalmente calificado
+using MarketPlaceApi.Api.Handlers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,7 +53,8 @@ builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddControllers();
 
@@ -66,7 +67,7 @@ if (app.Environment.IsDevelopment())
     // app.UseSwagger();
     // app.UseSwaggerUI();
 }
-
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseRouting();
@@ -74,8 +75,8 @@ app.UseRouting();
 app.UseAuthentication(); 
 app.UseAuthorization();
 
-
 //Custum Middlewares 
+
 
 app.MapControllers();
 

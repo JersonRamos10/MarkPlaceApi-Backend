@@ -25,10 +25,10 @@ namespace MarketPlaceApi.Business.Services
         {    
         
             if(string.IsNullOrWhiteSpace(productRequest.Name))
-                throw new ArgumentException("El nombre del producto no puede estar vacío.");
+                throw new BusinessValidationException("The product name cannot be empty", "Name");
 
             if(productRequest.Stock < 0)
-                throw new ArgumentException("El stock no puede ser negativo.");
+                throw new BusinessValidationException("The value does not conform to the correct format; a positive numeric value was expected.", "Stock");
             
             var newProduct = new Product
             {
@@ -78,7 +78,7 @@ namespace MarketPlaceApi.Business.Services
             var product = await _repo.GetByIdWithDetailsAsync(id) ?? throw new NotFoundException("Product don't exist");
             product.IsActive = false; 
             
-            return  await _repo.SaveChangesAsync();;
+            return  await _repo.SaveChangesAsync();
         }
 
         public async Task<PagedResponse<ProductResponse>> GetAllAsync(PaginedRequest pagined, FilterRequest filter)
@@ -117,7 +117,7 @@ namespace MarketPlaceApi.Business.Services
                 throw new NotFoundException("Product not found");
 
             if (productExist.SellerId != sellerId)
-                throw new UnauthorizedAccessException("You don't have permission to update this product");
+                throw new ForbiddenException("You don't have permission to update this product");
 
             if (!string.IsNullOrWhiteSpace(updateRequest.Name))
             {
@@ -155,6 +155,7 @@ namespace MarketPlaceApi.Business.Services
             return MapToResponse(productExist);
 
         }
+
         private string GenerateNumberReference()
         {
             string datePart = DateTime.UtcNow.ToString("yyyyMMdd");

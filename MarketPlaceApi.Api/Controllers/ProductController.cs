@@ -3,9 +3,9 @@ using MarketPlaceApi.Business.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using MarketPlaceApi.Business.DTOs.Products;
 using MarketPlaceApi.Business.DTOs.Pagination;
-using System.Runtime.InteropServices;
+using MarketPlaceApi.Business.Exceptions;
 using System.Security.Claims;
-using MarketPlaceApi.Domain.Entities;
+
 namespace MarketPlaceApi.Api.Controllers
 {
     [ApiController]
@@ -24,7 +24,7 @@ namespace MarketPlaceApi.Api.Controllers
         {
             var sellerIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (sellerIdClaim == null)
-                return BadRequest("User claim not found");
+                throw new UnauthorizedException("User claim not found");
             
             var sellerId = Guid.Parse(sellerIdClaim.Value);
 
@@ -47,7 +47,7 @@ namespace MarketPlaceApi.Api.Controllers
             var claimId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 
             if (string.IsNullOrEmpty(claimId))
-                return Unauthorized("User ID not found in token");
+                throw new UnauthorizedException("User claim not found");
 
             var sellerId = Guid.Parse(claimId);
 
