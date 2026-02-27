@@ -15,3 +15,4 @@ C:\MarketPlaceApi\MarketPlaceApi.Data\obj\Debug\net10.0\refint\MarketPlaceApi.Da
 C:\MarketPlaceApi\MarketPlaceApi.Data\obj\Debug\net10.0\MarketPlaceApi.Data.pdb
 C:\MarketPlaceApi\MarketPlaceApi.Data\obj\Debug\net10.0\MarketPlaceApi.Data.genruntimeconfig.cache
 C:\MarketPlaceApi\MarketPlaceApi.Data\obj\Debug\net10.0\ref\MarketPlaceApi.Data.dll
+C:\MarketPlaceApi\MarketPlaceApi.Data\obj\Debug\net10.0\MarketPlaceApi.Data.sourcelink.json

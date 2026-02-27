@@ -51,12 +51,12 @@ namespace MarketPlaceApi.Business.Services
             var user = await _userRepo.GetByUsernameAsync(login.Username);
 
             if(user == null)
-                throw new ValidationException("Invalid username or password");
+                throw new UnauthorizedException("Invalid username or password");
 
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(login.Password, user.Password);
 
             if (!isPasswordValid)
-                throw new ValidationException("Invalid username or password");
+                throw new UnauthorizedException("Invalid username or password");
 
             var token = _token.CreateToken(user);
 
@@ -77,14 +77,14 @@ namespace MarketPlaceApi.Business.Services
             var EmailDuplicate = await _userRepo.GetByEmailAsync(user.Email);
 
             if (EmailDuplicate != null)
-                throw new ValidationException("Email already exists");
+                throw new ConflictException("Email already exists");
 
             var UsernameDuplicate = await _userRepo.GetByUsernameAsync(user.UserName);
             if (UsernameDuplicate != null)
-                throw new ValidationException("Username already exists");
+                throw new ConflictException("Username already exists");
 
             if (!IsPasswordSecure(user.Password))
-                throw new ValidationException("The password must be at least 8 characters long, including uppercase letters, lowercase letters, numbers, and one special character.");
+                throw new BusinessValidationException("The password must be at least 8 characters long, including uppercase letters, lowercase letters, numbers, and one special character." , "Password");
 
 
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password); // Hash the password using BCrypt
@@ -136,11 +136,11 @@ namespace MarketPlaceApi.Business.Services
 
             // verified that the current password is correct
             if (!BCrypt.Net.BCrypt.Verify(request.CurrentPassword, user.Password))
-                throw new ValidationException("The current password is incorrect.");
+                throw new BusinessValidationException("The current password is incorrect.", "CurrentPassword");
             
 
             if (!IsPasswordSecure(request.NewPassword)) //validated the security of the NEW password
-                throw new ValidationException("The new password does not meet the requirements");
+                throw new BusinessValidationException("The new password does not meet the requirements", "NewPassword");
             
 
             // 4. Hash new password

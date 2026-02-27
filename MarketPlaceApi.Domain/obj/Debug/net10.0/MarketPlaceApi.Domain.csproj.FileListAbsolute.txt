@@ -9,3 +9,4 @@ C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.
 C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\refint\MarketPlaceApi.Domain.dll
 C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.pdb
 C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\ref\MarketPlaceApi.Domain.dll
+C:\MarketPlaceApi\MarketPlaceApi.Domain\obj\Debug\net10.0\MarketPlaceApi.Domain.sourcelink.json

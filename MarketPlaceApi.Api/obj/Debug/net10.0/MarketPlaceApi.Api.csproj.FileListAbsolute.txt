@@ -161,3 +161,4 @@ C:\MarketPlaceApi\MarketPlaceApi.Api\obj\Debug\net10.0\refint\MarketPlaceApi.Api
 C:\MarketPlaceApi\MarketPlaceApi.Api\obj\Debug\net10.0\MarketPlaceApi.Api.pdb
 C:\MarketPlaceApi\MarketPlaceApi.Api\obj\Debug\net10.0\MarketPlaceApi.Api.genruntimeconfig.cache
 C:\MarketPlaceApi\MarketPlaceApi.Api\obj\Debug\net10.0\ref\MarketPlaceApi.Api.dll
+C:\MarketPlaceApi\MarketPlaceApi.Api\obj\Debug\net10.0\MarketPlaceApi.Api.sourcelink.json
