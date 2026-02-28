@@ -27,6 +27,12 @@ namespace MarketPlaceApi.Data.Configurations
                 .WithOne(u => u.Seller)
                 .HasForeignKey<Seller>(s => s.UserId)
                 .HasConstraintName("FK_Sellers_Users");
+
+                // Relación 1:N con BankAccounts
+            builder.HasMany(s => s.BankAccounts)
+                .WithOne(b => b.Seller)
+                .HasForeignKey(b => b.SellerId)
+                .OnDelete(DeleteBehavior.Cascade); 
         }
     }
 }

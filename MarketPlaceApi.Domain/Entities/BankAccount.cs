@@ -8,6 +8,8 @@ namespace MarketPlaceApi.Domain.Entities
 
         public required string Type {get; set;}
 
+        public bool IsActive {get;set;} = true;
+
         public Guid SellerId {get; set;}
 
         public Seller Seller {get; set;} = null!;

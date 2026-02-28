@@ -18,10 +18,10 @@ namespace MarketPlaceApi.Data.Repositories
             await _context.Users.FindAsync(id);
 
         public async Task<User?> GetByEmailAsync(string email) => 
-            await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            await _context.Users .AsNoTracking().FirstOrDefaultAsync(u => u.Email == email);
 
         public async Task<User?> GetByUsernameAsync(string username) => 
-            await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+            await _context.Users .AsNoTracking().FirstOrDefaultAsync(u => u.UserName == username);
 
         public async Task AddAsync(User user) => 
             await _context.Users.AddAsync(user);

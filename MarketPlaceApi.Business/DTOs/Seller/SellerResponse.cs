@@ -4,6 +4,7 @@ namespace MarketPlaceApi.Business.DTOs.Seller
         Guid Id,
         string Name,
         string Email,
-        string Phone
+        string Phone,
+        string StoreName
     );
 }

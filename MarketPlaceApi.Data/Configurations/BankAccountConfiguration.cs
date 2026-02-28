@@ -14,6 +14,10 @@ namespace MarketPlaceApi.Data.Configurations
 
             builder.Property(b => b.NumberAccount).HasMaxLength(50).IsRequired();
             builder.Property(b => b.Type).HasMaxLength(50).IsRequired();
+        
+            builder.HasOne(b => b.Seller)
+                .WithMany(s => s.BankAccounts)
+                .HasForeignKey(b => b.SellerId);
         }
 
     
