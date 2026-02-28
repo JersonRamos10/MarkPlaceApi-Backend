@@ -45,6 +45,9 @@ namespace MarketPlaceApi.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("NumberAccount")
                         .IsRequired()
                         .HasMaxLength(50)

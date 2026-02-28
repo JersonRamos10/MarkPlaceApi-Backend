@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using MarketPlaceApi.Data.Data; 
 using MarketPlaceApi.Business.Services.Interfaces;
@@ -20,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var ConnectionString = builder.Configuration.GetConnectionString("MarketPlaceConnection");
 
-// Agregar el DbContext al contenedor de servicios
+//  DbContext services
 builder.Services.AddDbContext<MarketplaceDbContext>(options =>
     options.UseSqlServer(ConnectionString));
 
@@ -40,19 +39,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-    
-// builder.Services.AddSwaggerGen();
-// Nota: Swagger tiene incompatibilidades con .NET 10 en versiones actuales de Swashbuckle
 
 //repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 
 // services 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBankAccountService, BankAccountService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
@@ -74,8 +72,6 @@ app.UseRouting();
 
 app.UseAuthentication(); 
 app.UseAuthorization();
-
-//Custum Middlewares 
 
 
 app.MapControllers();

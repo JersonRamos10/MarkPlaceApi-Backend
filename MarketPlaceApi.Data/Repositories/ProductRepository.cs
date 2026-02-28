@@ -22,7 +22,8 @@ namespace MarketPlaceApi.Data.Repositories.interfaces
         }
         public async Task<Product?> GetByIdWithDetailsAsync(Guid id)
         {
-            var product =  await _context.Products.Where( p => p.IsActive)
+            var product =  await _context.Products .AsNoTracking()
+                .Where( p => p.IsActive)
                 .Include(p => p.Categories) 
                 .Include(p => p.Links)      
                 .Include(p => p.Seller)
@@ -48,6 +49,7 @@ namespace MarketPlaceApi.Data.Repositories.interfaces
                 return new List<Link>();
 
             return await _context.Links
+                .AsNoTracking()
                 .Where(c => ids.Contains(c.LinkId))
                 .ToListAsync();
         }

@@ -128,6 +128,7 @@ namespace MarketPlaceApi.Business.Services
             {
                 productExist.Description = updateRequest.Description;
             }
+            
 
             if (updateRequest.Price.HasValue)
             {
@@ -179,7 +180,9 @@ namespace MarketPlaceApi.Business.Services
                     product.Seller.UserId, 
                     product.Seller.User.UserName, 
                     product.Seller.User.Email,
-                    product.Seller.Phone)
+                    product.Seller.Phone,
+                    product.Seller.StoreName    
+                )
             );
         }
     }
