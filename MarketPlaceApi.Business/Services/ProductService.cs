@@ -173,13 +173,11 @@ namespace MarketPlaceApi.Business.Services
                 product.Stock,
                 product.Price,
                 product.Warranty,
-                
-                product.Categories.Select(c => new CategoryResponse(c.CategoryId, c.Name, c.Description)).ToList(),
+                product.Categories.Select(c => new CategoryResponse(c.CategoryId, c.Name, c.Description, c.IsActive)).ToList(),
                 product.Links.Select(l => new LinkResponse(l.LinkId, l.Url, l.Image)).ToList(),
                 new SellerResponse(
                     product.Seller.UserId, 
-                    product.Seller.User.UserName, 
-                    product.Seller.User.Email,
+                    $"{product.Seller.FirstName} {product.Seller.LastName}", 
                     product.Seller.Phone,
                     product.Seller.StoreName    
                 )

@@ -110,10 +110,8 @@ namespace MarketPlaceApi.Business.Services
         /// <returns>La cuenta bancaria actualizada en formato de respuesta.</returns>
         public async Task<BankAccountResponse> UpdateAsync(Guid sellerId, UpdateBankAccountRequest updateRequest)
         {
-            var accountExist = await _repo.GetAccountByIdAsync(updateRequest.Id, sellerId);
-
-            if(accountExist == null) 
-                throw new NotFoundException ("Account not found");
+            var accountExist = await _repo.GetAccountByIdAsync(updateRequest.Id, sellerId) 
+                ?? throw new NotFoundException ("Account not found");
 
             if (!string.IsNullOrEmpty(updateRequest.NumberAccount))
             {
@@ -126,6 +124,8 @@ namespace MarketPlaceApi.Business.Services
             }
 
             await _repo.Update(accountExist);
+
+            await _repo.SaveChangesAsync();
                 
             return MapToDto(accountExist);    
 

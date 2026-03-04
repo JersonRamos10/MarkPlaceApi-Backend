@@ -7,6 +7,8 @@ namespace MarketPlaceApi.Business.DTOs.Seller
         string Name,
         string Email,
         string Phone,
-        List<BankAccountResponse> BankAccounts
+        string StoreName,
+        string UserName,
+        string  Direction 
     );
 }
