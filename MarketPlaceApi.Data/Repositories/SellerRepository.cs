@@ -1,12 +1,14 @@
 using MarketPlaceApi.Data.Data;
 using MarketPlaceApi.Domain.Entities;
-using MarketPlaceApi.Data.Repositories.Interfaces;
+using MarketPlaceApi.Data.Repositories.interfaces;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace MarketPlaceApi.Data.Repositories
 {
-    public class SellerRepository : ISellerRepository
+    public class SellerRepository:ISellerRepository
     {
+        
         private readonly MarketplaceDbContext _context;
 
         public SellerRepository(MarketplaceDbContext context)
@@ -19,14 +21,41 @@ namespace MarketPlaceApi.Data.Repositories
             await _context.Sellers.AddAsync(seller);
         }
 
-        public async Task<Seller?> GetByIdAsync(Guid id)
+        public async Task<Seller?> GetByIdAsync(Guid sellerId)
         {
-            return await _context.Sellers.FindAsync(id);
+            var seller = await _context.Sellers.FirstOrDefaultAsync(s => s.SellerId == sellerId);
+
+            return seller;
         }
 
-        public async Task SaveChangesAsync()
+        public async Task<Seller?> GetByIdForUpdateAsync(Guid sellerId)
         {
-            await _context.SaveChangesAsync();
+            var seller = await _context.Sellers 
+                        .Where(s => s.IsActive == true)
+                        .Include(s => s.User)
+                        .FirstOrDefaultAsync(s => s.SellerId == sellerId);
+
+            return seller;
+        }
+
+        public async Task<Seller?> GetByIdWithUserAsync(Guid sellerId)
+        {
+            var seller = await _context.Sellers 
+                        .AsNoTracking()
+                        .Where(s => s.IsActive == true)
+                        .Include(s => s.User)
+                        .FirstOrDefaultAsync(s => s.SellerId == sellerId);
+
+            return seller;
+        }
+        public void Update(Seller seller)
+        {
+            _context.Sellers.Update(seller);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

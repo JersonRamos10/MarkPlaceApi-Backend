@@ -74,8 +74,6 @@ namespace MarketPlaceApi.Data.Repositories
         public async Task Update(BankAccount bankAccount)
         {
             _context.BankAccounts.Update(bankAccount);
-
-            await _context.SaveChangesAsync();
         }
     }
 }

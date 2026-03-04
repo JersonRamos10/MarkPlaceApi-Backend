@@ -21,7 +21,11 @@ namespace MarketPlaceApi.Business.Services
         private readonly IConfiguration _config;
 
         private readonly ITokenService _token;
-        public AuthService(IUserRepository userRepo, IConfiguration config, ITokenService token, ISellerRepository sellerRepo)
+        public AuthService(
+            IUserRepository userRepo, 
+            IConfiguration config,
+            ITokenService token, 
+            ISellerRepository sellerRepo)
         {
             _userRepo = userRepo;
             _config = config;

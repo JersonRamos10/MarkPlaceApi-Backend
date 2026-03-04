@@ -9,6 +9,7 @@ using MarketPlaceApi.Data.Repositories.interfaces;
 using MarketPlaceApi.Data.Repositories;
 using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Api.Handlers;
+using MarketPlaceApi.Domain.Entities;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,12 +46,15 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 // services 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IBankAccountService, BankAccountService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
