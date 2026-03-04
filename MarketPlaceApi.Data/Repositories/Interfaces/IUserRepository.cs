@@ -8,6 +8,6 @@ namespace MarketPlaceApi.Data.Repositories.interfaces
         Task<User?> GetByEmailAsync(string email);
         Task<User?> GetByUsernameAsync(string username);
         Task AddAsync(User user);
-        Task<bool> SaveChangesAsync();
+        Task SaveChangesAsync();
     }
 }

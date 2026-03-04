@@ -4,7 +4,7 @@ using MarketPlaceApi.Data.Data;
 using Microsoft.EntityFrameworkCore;
 namespace MarketPlaceApi.Data.Repositories.interfaces
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository :IProductRepository
     {
 
         private readonly MarketplaceDbContext _context; 
@@ -14,12 +14,10 @@ namespace MarketPlaceApi.Data.Repositories.interfaces
             _context = context;
         }
         
-        public async Task AddAsync(Product product)
-        {
-            
+        public async Task AddAsync(Product product)=>
+
             await _context.Products.AddAsync(product);
             
-        }
         public async Task<Product?> GetByIdWithDetailsAsync(Guid id)
         {
             var product =  await _context.Products .AsNoTracking()
@@ -80,14 +78,12 @@ namespace MarketPlaceApi.Data.Repositories.interfaces
             return (items, total);
         }
 
-        public async Task<bool> SaveChangesAsync()
-        {
-            return (await _context.SaveChangesAsync()) > 0;
-        }
+        public async Task SaveChangesAsync() =>
+            await _context.SaveChangesAsync() ;
+    
 
-        public void Update(Product product)
-        {
+        public void Update(Product product) =>
             _context.Products.Update(product);
-        }
+        
     }
 }

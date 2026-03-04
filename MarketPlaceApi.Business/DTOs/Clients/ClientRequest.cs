@@ -5,7 +5,7 @@ namespace  MarketPlaceApi.Business.DTOs.Clients
     public sealed record ClientRequest (
         [Required]
         [MaxLength(50)]
-        string FirtsName,
+        string FirstName,
 
         [Required]
         [MaxLength(50)]
@@ -24,6 +24,7 @@ namespace  MarketPlaceApi.Business.DTOs.Clients
         string Email,
 
         [Required]
+        [Phone]
         [MaxLength(50)]
         string Phone
 

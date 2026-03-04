@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Unicode;
 using MarketPlaceApi.Domain.Enums;
 
@@ -13,7 +14,7 @@ namespace MarketPlaceApi.Domain.Entities
 
         public  string PaymentReceiptUrl {get; set;} = string.Empty;
 
-        public required string PaymentMethod {get;set;}
+        public  PaymentMethod PaymentMethod {get;set;}
 
         public OrderStatus Status {get; set;} 
 
@@ -21,7 +22,12 @@ namespace MarketPlaceApi.Domain.Entities
 
         public Client Client {get;set;} = null!;
 
+        public Guid SellerId {get;set;}
+
+        public Seller Seller {get; set;} = null!;
+
         public Invoice Invoice {get;set;} = null!;
+
 
         public ICollection<OrderDetail> OrderDetails {get; set;} = new HashSet<OrderDetail>();
     }

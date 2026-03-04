@@ -37,9 +37,9 @@ namespace MarketPlaceApi.Data.Repositories
             return category;
         }
 
-        public async Task<bool> SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            return await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
         }
     }
 }

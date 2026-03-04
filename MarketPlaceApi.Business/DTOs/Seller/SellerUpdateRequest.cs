@@ -9,6 +9,7 @@ namespace MarketPlaceApi.Business.DTOs.Seller
         [MaxLength(50)]
         string? Name =  null, 
 
+        [Phone]
         string? Phone = null,
 
         [MaxLength(100)]
