@@ -4,6 +4,7 @@ using MarketPlaceApi.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketPlaceApi.Data.Migrations
 {
     [DbContext(typeof(MarketplaceDbContext))]
-    partial class MarketplaceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260304173833_ChangePaymentMethodToEnum")]
+    partial class ChangePaymentMethodToEnum
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,17 +271,12 @@ namespace MarketPlaceApi.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<Guid>("SellerId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("SellerId");
 
                     b.ToTable("Orders", (string)null);
                 });
@@ -485,16 +483,7 @@ namespace MarketPlaceApi.Data.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Orders_Clients");
 
-                    b.HasOne("MarketPlaceApi.Domain.Entities.Seller", "Seller")
-                        .WithMany("Orders")
-                        .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Sellers_Order");
-
                     b.Navigation("Client");
-
-                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("MarketPlaceApi.Domain.Entities.OrderDetail", b =>
@@ -565,8 +554,6 @@ namespace MarketPlaceApi.Data.Migrations
             modelBuilder.Entity("MarketPlaceApi.Domain.Entities.Seller", b =>
                 {
                     b.Navigation("BankAccounts");
-
-                    b.Navigation("Orders");
 
                     b.Navigation("Products");
                 });

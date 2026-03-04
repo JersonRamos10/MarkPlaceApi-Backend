@@ -10,6 +10,6 @@ namespace MarketPlaceApi.Data.Repositories.Interfaces
 
         Task <Category?> GetByNameAsync (string name);
 
-        Task<bool> SaveChangesAsync();
+        Task SaveChangesAsync();
     }
 }

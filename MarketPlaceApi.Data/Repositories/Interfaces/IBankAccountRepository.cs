@@ -10,7 +10,7 @@ namespace MarketPlaceApi.Data.Repositories.Interfaces
 
         public Task Update(BankAccount bankAccount);
 
-        Task<bool> SaveChangesAsync();
+        Task SaveChangesAsync();
 
         Task<List<BankAccount>> GetAccountsBySellerIdAsync (Guid sellerId);
 

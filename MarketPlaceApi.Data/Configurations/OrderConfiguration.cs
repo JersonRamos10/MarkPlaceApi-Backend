@@ -23,6 +23,7 @@ namespace MarketPlaceApi.Data.Configuration
                 .HasMaxLength(200);
 
             builder.Property(o => o.PaymentMethod)
+                .HasConversion<String>()
                 .HasMaxLength(50)
                 .IsRequired();
 

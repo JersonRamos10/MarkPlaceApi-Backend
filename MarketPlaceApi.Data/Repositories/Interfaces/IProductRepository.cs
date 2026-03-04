@@ -20,7 +20,7 @@ namespace MarketPlaceApi.Data.Repositories.interfaces
         Task AddAsync(Product product);
         void Update(Product product); 
 
-        Task<bool> SaveChangesAsync();
+        Task SaveChangesAsync();
 
     }
 }

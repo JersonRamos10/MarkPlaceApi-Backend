@@ -16,6 +16,8 @@ namespace MarketPlaceApi.Data.Configuration
 
             builder.Property(o => o.UnitPriceAtSale).HasPrecision(18,2);
             builder.Property(o => o.Quantity).IsRequired();
+        
+            
         }
     }
 }

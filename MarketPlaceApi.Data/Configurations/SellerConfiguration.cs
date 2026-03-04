@@ -33,6 +33,13 @@ namespace MarketPlaceApi.Data.Configurations
                 .WithOne(b => b.Seller)
                 .HasForeignKey(b => b.SellerId)
                 .OnDelete(DeleteBehavior.Cascade); 
+
+            // Relacion 1:N con Order
+            builder.HasMany(o => o.Orders)
+            .WithOne(o => o.Seller)
+            .HasForeignKey(b => b.SellerId)
+            .HasConstraintName("FK_Sellers_Order")
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

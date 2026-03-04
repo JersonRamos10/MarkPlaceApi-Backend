@@ -20,6 +20,8 @@ namespace MarketPlaceApi.Domain.Entities
         //propertys navigation
         public Guid UserId { get; set; }
         public User User { get; set; } = null!;
+
+        public ICollection<Order>   Orders {get; set;} = new HashSet<Order>(); 
         public ICollection<BankAccount> BankAccounts {get; set;} = new HashSet<BankAccount> ();
 
         public ICollection<Product> Products {get; set;} = new List<Product>();

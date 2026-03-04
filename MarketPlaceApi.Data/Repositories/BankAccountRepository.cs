@@ -19,7 +19,7 @@ namespace MarketPlaceApi.Data.Repositories
         {
             await _context.BankAccounts.AddAsync(bankAccount);
 
-            await _context.SaveChangesAsync();
+            
         }
 
         public async Task<bool> Delete(int id, Guid sellerId)
@@ -66,14 +66,11 @@ namespace MarketPlaceApi.Data.Repositories
             return accounts;
         }
 
-        public async Task<bool> SaveChangesAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
+        public async Task SaveChangesAsync()=>
+            await _context.SaveChangesAsync() ;
 
-        public async Task Update(BankAccount bankAccount)
-        {
+        public async Task Update(BankAccount bankAccount)=>
             _context.BankAccounts.Update(bankAccount);
-        }
+    
     }
 }
