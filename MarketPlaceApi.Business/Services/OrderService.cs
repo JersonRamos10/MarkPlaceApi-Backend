@@ -1,18 +1,16 @@
 
 using System.Data;
-using System.Diagnostics.CodeAnalysis;
-using Azure.Messaging;
 using MarketPlaceApi.Business.DTOs.Clients;
 using MarketPlaceApi.Business.DTOs.Order;
 using MarketPlaceApi.Business.DTOs.OrderDetail;
 using MarketPlaceApi.Business.DTOs.Products;
+using MarketPlaceApi.Business.DTOs.Seller;
+using MarketPlaceApi.Business.DTOs.Category;
+using MarketPlaceApi.Business.DTOs.Link;
 using MarketPlaceApi.Business.Exceptions;
-using MarketPlaceApi.Data.Migrations;
-using MarketPlaceApi.Data.Repositories;
 using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Domain.Entities;
 using MarketPlaceApi.Domain.Enums;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 namespace MarketPlaceApi.Business.Services
 {
     public class OrderService : IOrderService
@@ -53,7 +51,7 @@ namespace MarketPlaceApi.Business.Services
 
             var order = new Order{
                 OrderNumber = orderNumber,
-                Client = client,
+                ClientId = client.ClientId,
                 SellerId = sellerId,
                 PaymentMethod = orderRequest.PaymentMethod,
                 PaymentReceiptUrl = orderRequest.PaymentReceiptUrl,
@@ -73,7 +71,12 @@ namespace MarketPlaceApi.Business.Services
             
             
             await _orderRepo.SaveChangesAsync();
-            return MapToOrderDto(order);
+            
+            // Recargar con todas las relaciones para el mapeo
+            var savedOrder = await _orderRepo.GetByIdAsync(order.OrderId)
+                ?? throw new NotFoundException("Order not found");
+
+            return MapToOrderDto(savedOrder);
         }
 
         public async Task<OrderResponse> GetOrderByIdAsync(Guid orderId)
@@ -96,8 +99,8 @@ namespace MarketPlaceApi.Business.Services
 
         public async Task<string> UpdateOrderStatusAsync(Guid orderId, OrderStatus status)
         {
-            var order = await _orderRepo.GetByIdAsync(orderId) 
-                    ?? throw new NotFoundException("Order not found");
+            var order = await _orderRepo.GetByIdForUpdateAsync(orderId)
+                ?? throw new NotFoundException("Order not found");
 
             order.Status = status;
 
@@ -173,11 +176,28 @@ namespace MarketPlaceApi.Business.Services
             );
         }
 
-        private ProductResponse MapProductToDto(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
+    private ProductResponse MapProductToDto(Product product)
+    {
+        return new ProductResponse(
+            product.ProductId,
+            product.Name,
+            product.NumberReference,
+            product.Description,
+            product.Stock,
+            product.Price,
+            product.Warranty,
+            product.Categories.Select(c => 
+                new CategoryResponse(c.CategoryId, c.Name, c.Description, c.IsActive)).ToList(),
+            product.Links.Select(l => 
+                new LinkResponse(l.LinkId, l.Url, l.Image)).ToList(),
+            new SellerResponse(
+                product.Seller.UserId,
+                $"{product.Seller.FirstName} {product.Seller.LastName}",
+                product.Seller.Phone,
+                product.Seller.StoreName
+            )
+        );
+    }
         private  OrderSummaryResponse MapToOrderSummaryDto(Order order)
         {
             return new OrderSummaryResponse(
