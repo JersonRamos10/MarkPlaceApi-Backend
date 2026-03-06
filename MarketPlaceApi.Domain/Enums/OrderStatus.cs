@@ -2,13 +2,13 @@ namespace MarketPlaceApi.Domain.Enums
 {
     public enum OrderStatus
     {
-        Pendiente = 1,
-        EnRevision = 2,
-        Pagada = 3,
-        Cancelada = 4,
-        Rechazada = 5,
+        Pendiente = 0,
+        EnRevision = 1,
+        Pagada = 2,
+        Cancelada = 3,
+        Rechazada = 4,
         
-        Entregada = 6,
+        Entregada = 5,
 
 
     }    

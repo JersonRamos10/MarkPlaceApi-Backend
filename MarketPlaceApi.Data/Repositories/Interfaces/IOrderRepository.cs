@@ -11,6 +11,7 @@ namespace MarketPlaceApi.Data.Repositories.Interfaces
 
         Task<IEnumerable<Order>> GetBySellerIdAsync(Guid sellerId);
 
+        Task<Order?> GetByIdForUpdateAsync(Guid id);
         void Update (Order order);
 
     }
