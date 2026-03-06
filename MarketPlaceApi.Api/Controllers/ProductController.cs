@@ -62,7 +62,7 @@ namespace MarketPlaceApi.Api.Controllers
 
         public async Task<ActionResult> DeleteAsync(Guid id)
         {
-            var result = await _pdtService.DeleteAsync(id);
+            await _pdtService.DeleteAsync(id);
 
             return NoContent();
         }

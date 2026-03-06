@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using MarketPlaceApi.Domain.Entities;
-using MarketPlaceApi.Data.Repositories.interfaces;
 using MarketPlaceApi.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using System.ComponentModel.DataAnnotations;
@@ -130,7 +129,7 @@ namespace MarketPlaceApi.Business.Services
 
         }
 
-        public async Task<bool> ChangePasswordAsync(Guid userId, ChangePasswordRequest request)
+        public async Task ChangePasswordAsync(Guid userId, ChangePasswordRequest request)
         {
             // Search for the user by the ID that comes from the Token
             var user = await _userRepo.GetByIdAsync(userId);
@@ -151,7 +150,7 @@ namespace MarketPlaceApi.Business.Services
             user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
 
             
-            return await _userRepo.SaveChangesAsync();
+            await _userRepo.SaveChangesAsync();
         }
         private bool IsPasswordSecure(string password)
         {

@@ -1,7 +1,7 @@
 using MarketPlaceApi.Business.DTOs.Seller;
 using MarketPlaceApi.Business.Exceptions;
 using MarketPlaceApi.Business.Services.Interfaces;
-using MarketPlaceApi.Data.Repositories.interfaces;
+using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Domain.Entities;
 
 namespace MarketPlaceApi.Business.Services

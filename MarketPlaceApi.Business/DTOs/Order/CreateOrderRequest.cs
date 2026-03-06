@@ -17,6 +17,11 @@ namespace MarketPlaceApi.Business.DTOs.Order
 
         [Required]
         [MaxLength(200)]
-        string PaymentReceiptUrl
+        [Url]
+        string PaymentReceiptUrl,
+
+        [Required]
+        [Range(1, 100)]
+        int Quantity
     );
 }
