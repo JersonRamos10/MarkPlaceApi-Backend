@@ -4,7 +4,7 @@ using MarketPlaceApi.Business.DTOs.Category;
 using MarketPlaceApi.Business.DTOs.Link;
 using MarketPlaceApi.Business.DTOs.Seller;
 using MarketPlaceApi.Business.Services.Interfaces;
-using MarketPlaceApi.Data.Repositories.interfaces;
+using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Domain.Entities;
 using MarketPlaceApi.Business.Exceptions;
 
@@ -73,12 +73,12 @@ namespace MarketPlaceApi.Business.Services
             return await GetByIdAsync(newProduct.ProductId);
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var product = await _repo.GetByIdWithDetailsAsync(id) ?? throw new NotFoundException("Product don't exist");
             product.IsActive = false; 
             
-            return  await _repo.SaveChangesAsync();
+            await _repo.SaveChangesAsync();
         }
 
         public async Task<PagedResponse<ProductResponse>> GetAllAsync(PaginedRequest pagined, FilterRequest filter)

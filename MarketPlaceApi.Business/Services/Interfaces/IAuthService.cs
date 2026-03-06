@@ -16,6 +16,6 @@ namespace MarketPlaceApi.Business.Services.Interfaces
         Task<AuthResponse> LoginAsync(LoginRequest login);
 
         //method for changepassword of user
-        public Task<bool> ChangePasswordAsync(Guid userId, ChangePasswordRequest request);
+        public Task ChangePasswordAsync(Guid userId, ChangePasswordRequest request);
     }
 }

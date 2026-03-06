@@ -49,7 +49,7 @@ namespace MarketPlaceApi.Api.Controllers
 
                 var userId = Guid.Parse(userIdClaim.Value);
 
-                var result = await _authService.ChangePasswordAsync(userId,chPass);
+                await _authService.ChangePasswordAsync(userId,chPass);
                 return Ok(new { message = "Password successfully updated" });
             
         }

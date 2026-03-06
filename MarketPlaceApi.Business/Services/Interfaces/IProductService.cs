@@ -11,6 +11,6 @@ namespace MarketPlaceApi.Business.Services.Interfaces
 
         Task<PagedResponse<ProductResponse>> GetAllAsync(PaginedRequest pagined, FilterRequest filter);
         Task<ProductResponse> GetByIdAsync (Guid Id);
-        Task<bool> DeleteAsync (Guid Id); 
+        Task DeleteAsync (Guid Id); 
     }
 }

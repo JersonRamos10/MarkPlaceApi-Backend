@@ -1,6 +1,6 @@
 using MarketPlaceApi.Data.Data;
 using MarketPlaceApi.Domain.Entities;
-using MarketPlaceApi.Data.Repositories.interfaces;
+using MarketPlaceApi.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 

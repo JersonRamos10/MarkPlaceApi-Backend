@@ -1,6 +1,6 @@
 using MarketPlaceApi.Domain.Entities;
 
-namespace MarketPlaceApi.Data.Repositories.interfaces
+namespace MarketPlaceApi.Data.Repositories.Interfaces
 {
     public interface IUserRepository
     {

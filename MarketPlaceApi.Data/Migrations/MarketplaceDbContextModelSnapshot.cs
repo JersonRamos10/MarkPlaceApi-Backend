@@ -34,7 +34,7 @@ namespace MarketPlaceApi.Data.Migrations
 
                     b.HasIndex("ProductsProductId");
 
-                    b.ToTable("CategoryProduct");
+                    b.ToTable("CategoryProduct", (string)null);
                 });
 
             modelBuilder.Entity("MarketPlaceApi.Domain.Entities.BankAccount", b =>

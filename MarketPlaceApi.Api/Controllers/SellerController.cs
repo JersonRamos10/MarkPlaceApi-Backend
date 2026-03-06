@@ -38,7 +38,7 @@ namespace MarketPlaceApi.Api.Controllers
             return Ok (sellerProfile);
         }
 
-        private  Guid GetSellerId(ClaimsPrincipal user)
+        private static Guid GetSellerId(ClaimsPrincipal user)
         {
             var sellerIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
             if (sellerIdClaim == null)

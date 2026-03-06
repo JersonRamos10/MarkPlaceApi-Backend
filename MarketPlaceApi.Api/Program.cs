@@ -5,11 +5,11 @@ using MarketPlaceApi.Business.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using MarketPlaceApi.Data.Repositories.interfaces;
-using MarketPlaceApi.Data.Repositories;
 using MarketPlaceApi.Data.Repositories.Interfaces;
+using MarketPlaceApi.Data.Repositories;
 using MarketPlaceApi.Api.Handlers;
-using MarketPlaceApi.Domain.Entities;
+using System.Text.Json.Serialization;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,13 +55,19 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IBankAccountService, BankAccountService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+.AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters
+            .Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 

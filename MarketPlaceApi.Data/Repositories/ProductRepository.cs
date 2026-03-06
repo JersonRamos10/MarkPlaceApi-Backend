@@ -2,7 +2,7 @@
 using MarketPlaceApi.Domain.Entities;
 using MarketPlaceApi.Data.Data;
 using Microsoft.EntityFrameworkCore;
-namespace MarketPlaceApi.Data.Repositories.interfaces
+namespace MarketPlaceApi.Data.Repositories.Interfaces
 {
     public class ProductRepository :IProductRepository
     {

@@ -21,6 +21,7 @@ namespace  MarketPlaceApi.Business.DTOs.Clients
 
         [Required]
         [MaxLength(150)]
+        [EmailAddress]
         string Email,
 
         [Required]
