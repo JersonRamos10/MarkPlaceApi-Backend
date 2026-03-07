@@ -11,6 +11,7 @@ using MarketPlaceApi.Business.Exceptions;
 using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Domain.Entities;
 using MarketPlaceApi.Domain.Enums;
+using MarketPlaceApi.Business.Services.Interfaces;
 namespace MarketPlaceApi.Business.Services
 {
     public class OrderService : IOrderService
@@ -23,14 +24,17 @@ namespace MarketPlaceApi.Business.Services
 
         private readonly ISellerRepository _sellerRepo;
 
+        private readonly IInvoiceService _invoiceService;
         public OrderService (IOrderRepository orderRepo , 
         IClientRepository clientRepo,
         IProductRepository prodRepo,
-        ISellerRepository sellerRepo){
+        ISellerRepository sellerRepo,
+        IInvoiceService invoiceService){
             _orderRepo = orderRepo;
             _clientRepo = clientRepo;
             _prodRepo = prodRepo;
             _sellerRepo = sellerRepo;
+            _invoiceService = invoiceService;
             
         }
         public async Task<OrderResponse> CreateOrderAsync(CreateOrderRequest orderRequest)
@@ -107,6 +111,9 @@ namespace MarketPlaceApi.Business.Services
             _orderRepo.Update(order);
 
             await _orderRepo.SaveChangesAsync();
+
+            if(order.Status == OrderStatus.Pagada)
+                await _invoiceService.GenerateAsync(order.OrderId);
 
             return $"Order updated successfully";
         }

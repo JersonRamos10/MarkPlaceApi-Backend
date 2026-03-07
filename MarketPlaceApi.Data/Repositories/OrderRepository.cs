@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using MarketPlaceApi.Data.Data;
 using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Domain.Entities;
@@ -52,6 +53,7 @@ namespace MarketPlaceApi.Data.Repositories
         public async Task<Order?> GetByIdForUpdateAsync(Guid id)
         {
             return await _context.Orders
+                .Include(o => o.OrderDetails)
                 .FirstOrDefaultAsync(o => o.OrderId == id);
         }
         public void Update(Order order) =>

@@ -13,6 +13,7 @@ namespace MarketPlaceApi.Data.Configurations
 
             builder.Property(i => i.InvoiceNumber).HasMaxLength(50).IsRequired();
             builder.Property(i => i.GranTotal).HasPrecision(18,2);
+            builder.Property(i => i.SubTotal).HasPrecision(18,2);
             builder.Property(i => i.TaxTotal).HasPrecision(18,2);
         }
     }

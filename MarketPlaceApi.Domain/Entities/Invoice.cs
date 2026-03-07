@@ -8,6 +8,7 @@ namespace MarketPlaceApi.Domain.Entities
 
         public DateTimeOffset IssueDate{get;set;} = DateTime.UtcNow;
 
+        public decimal SubTotal {get; set;}
         public decimal GranTotal {get;set;}
 
         public decimal TaxTotal {get;set;}
