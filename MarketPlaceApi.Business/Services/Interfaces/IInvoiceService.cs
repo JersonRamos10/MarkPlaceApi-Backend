@@ -4,6 +4,7 @@ namespace MarketPlaceApi.Business.Services.Interfaces
 {
     public interface IInvoiceService
     {
-        Task<Invoice> GenerateAsync(Guid orderId);
+        Task<(Invoice invoice, byte[] pdfBytes)> GenerateAsync(Guid orderId);
+        Task<byte[]> GetInvoicePdfAsync(Guid orderId, Guid sellerId);
     }
 }

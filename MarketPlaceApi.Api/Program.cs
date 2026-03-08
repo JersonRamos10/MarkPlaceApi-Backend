@@ -9,6 +9,8 @@ using MarketPlaceApi.Data.Repositories.Interfaces;
 using MarketPlaceApi.Data.Repositories;
 using MarketPlaceApi.Api.Handlers;
 using System.Text.Json.Serialization;
+using QuestPDF.Infrastructure;
+
 
 
 
@@ -61,6 +63,8 @@ builder.Services.AddScoped<IBankAccountService, BankAccountService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+builder.Services.AddScoped<IPdfService, PdfService>();
+builder.Services.AddScoped<IEmailService , EmailService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
@@ -70,6 +74,8 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters
             .Add(new JsonStringEnumConverter());
     });
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 var app = builder.Build();
 
@@ -93,4 +99,3 @@ app.MapControllers();
 
 
 app.Run();
-

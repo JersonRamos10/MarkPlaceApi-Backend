@@ -21,6 +21,8 @@ namespace MarketPlaceApi.Business.Services
 
         private readonly IProductRepository _prodRepo;
 
+        private readonly IEmailService _emailService;
+
 
         private readonly ISellerRepository _sellerRepo;
 
@@ -29,12 +31,14 @@ namespace MarketPlaceApi.Business.Services
         IClientRepository clientRepo,
         IProductRepository prodRepo,
         ISellerRepository sellerRepo,
-        IInvoiceService invoiceService){
+        IInvoiceService invoiceService,
+        IEmailService emailService){
             _orderRepo = orderRepo;
             _clientRepo = clientRepo;
             _prodRepo = prodRepo;
             _sellerRepo = sellerRepo;
             _invoiceService = invoiceService;
+            _emailService = emailService;
             
         }
         public async Task<OrderResponse> CreateOrderAsync(CreateOrderRequest orderRequest)
@@ -113,7 +117,14 @@ namespace MarketPlaceApi.Business.Services
             await _orderRepo.SaveChangesAsync();
 
             if(order.Status == OrderStatus.Pagada)
-                await _invoiceService.GenerateAsync(order.OrderId);
+            {
+                var (invoice, pdfBytes) = await _invoiceService.GenerateAsync(order.OrderId);
+                await _emailService.SendInvoiceAsync(
+                    order.Client.Email,
+                    $"{order.Client.FirstName} {order.Client.LastName}",
+                    pdfBytes
+                );
+            }
 
             return $"Order updated successfully";
         }

@@ -32,6 +32,7 @@ namespace MarketPlaceApi.Data.Repositories
             .Include(o => o.OrderDetails)
                 .ThenInclude(od => od.Product)
                 .ThenInclude(p => p.Seller)
+            .Include(o => o.Seller)
             .FirstOrDefaultAsync(o => o.OrderId == id);
     }
 
@@ -53,6 +54,7 @@ namespace MarketPlaceApi.Data.Repositories
         public async Task<Order?> GetByIdForUpdateAsync(Guid id)
         {
             return await _context.Orders
+                .Include(o => o.Client)
                 .Include(o => o.OrderDetails)
                 .FirstOrDefaultAsync(o => o.OrderId == id);
         }
