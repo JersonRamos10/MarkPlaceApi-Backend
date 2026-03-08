@@ -116,14 +116,54 @@ namespace MarketPlaceApi.Business.Services
 
             await _orderRepo.SaveChangesAsync();
 
-            if(order.Status == OrderStatus.Pagada)
+            var clientFullName = $"{order.Client.FirstName} {order.Client.LastName}";
+
+            switch (order.Status)
             {
-                var (invoice, pdfBytes) = await _invoiceService.GenerateAsync(order.OrderId);
-                await _emailService.SendInvoiceAsync(
-                    order.Client.Email,
-                    $"{order.Client.FirstName} {order.Client.LastName}",
-                    pdfBytes
-                );
+                case OrderStatus.Pagada: 
+                    var (invoice, pdfBytes) = await _invoiceService.GenerateAsync(order.OrderId);
+                    await _emailService.SendInvoiceAsync(
+                        order.Client.Email,
+                        clientFullName,
+                        pdfBytes
+                    );
+                    break;
+
+                case OrderStatus.Cancelada:
+                    await _emailService.SendOrderStatusAsync(
+                        order.Client.Email,
+                        clientFullName,
+                        "Tu pedido ha sido cancelado",
+                        "Tu pedido ha sido cancelado. Si tienes dudas, contáctanos."
+                    );
+                    break;
+
+
+                case OrderStatus.Entregada:
+                    await _emailService.SendOrderStatusAsync(
+                        order.Client.Email,
+                        clientFullName,
+                        "Tu pedido ha sido entregado",
+                        $"Tu pedido {order.OrderNumber} ha sido entregado. ¡Gracias por tu compra!"
+                    );
+                    break;
+                case OrderStatus.EnRevision:
+                    await _emailService.SendOrderStatusAsync(
+                        order.Client.Email,
+                        clientFullName,
+                        "Tu pedido se encuentra en revicion",
+                        $"Tu pedido {order.OrderNumber} esta siendo procesado por nuestro equipo. Su orden encuentra en fase de revision. "
+                    );
+                    break;
+
+                case OrderStatus.Rechazada:
+                    await _emailService.SendOrderStatusAsync(
+                        order.Client.Email,
+                        clientFullName,
+                        "Tu pedido ha sido Rechazado",
+                        $"Tu pedido {order.OrderNumber} Tu pedido ha sido Rechazado. Si tienes dudas, contáctanos. "
+                    );
+                    break;
             }
 
             return $"Order updated successfully";

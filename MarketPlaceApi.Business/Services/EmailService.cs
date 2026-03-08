@@ -18,6 +18,29 @@ namespace MarketPlaceApi.Business.Services
             _fromName  = config["SendGrid:FromName"]!;
         }
 
+        public async Task SendOrderStatusAsync(string toEmail, string toName, string subject, string message)
+        {
+            var client = new SendGridClient(_apiKey);
+
+            var emailMessage = new SendGridMessage
+            {
+                From = new EmailAddress(_fromEmail, _fromName),
+                Subject = subject,
+                PlainTextContent = message,
+                HtmlContent = $"<p>{message}</p>"
+            };
+
+            emailMessage.AddTo(new EmailAddress(toEmail, toName));
+
+            var response = await client.SendEmailAsync(emailMessage);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorBody = await response.Body.ReadAsStringAsync();
+                throw new Exception($"Error enviando email: {errorBody}");
+            }
+        }
+        
         public async Task SendInvoiceAsync(string toEmail, string toName, byte[] pdfBytes)
         {
             var client = new SendGridClient(_apiKey);
